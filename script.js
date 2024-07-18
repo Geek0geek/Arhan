@@ -20,7 +20,7 @@ function validateLogin() {
 
     if (userId === USER_ID && password === PASSWORD && captchaInput === captcha) {
         alert("Login successful!");
-        // Open a simple text editor (this part can be extended as needed)
+        
         openEditor();
     } else {
         attempts++;
@@ -40,6 +40,6 @@ function playVideo() {
 }
 
 function openEditor() {
-    // Simple text editor logic can be added here
+
     alert("Editor opened!");
 }
