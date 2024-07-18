@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARHANsecuroserve Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ARHANsecuroserve</h1>
+        <div id="login-form">
+            <label for="user-id">User ID:</label>
+            <input type="text" id="user-id">
+            <label for="password">Password:</label>
+            <input type="password" id="password">
+            <label for="captcha">Captcha: <span id="captcha"></span></label>
+            <input type="text" id="captcha-input">
+            <button onclick="validateLogin()">Login</button>
+        </div>
+        <div id="video-container" class="hidden">
+            <video id="video" controls>
+                <source src="video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
