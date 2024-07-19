@@ -1,186 +1,71 @@
-const USER_ID = "admin";
-const PASSWORD = "sierra_7";
-let attempts = 0;
-const MAX_ATTEMPTS = 3;
-
-let users = {};
-let notespaces = {};
-
-window.onload = function() {
-    generateCaptcha();
-    loadNotespaces();
-    animateLogo();
-};
-
-function generateCaptcha() {
-    const captcha = Math.floor(Math.random() * 9000) + 1000;
-    document.getElementById("captcha").innerText = captcha;
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
-function validateLogin() {
-    const userId = document.getElementById("user-id").value;
-    const password = document.getElementById("password").value;
-    const captchaInput = document.getElementById("captcha-input").value;
-    const captcha = document.getElementById("captcha").innerText;
-
-    let valid = true;
-
-    if (!userId) {
-        document.getElementById("user-id-error").innerText = "Please enter your User ID.";
-        document.getElementById("user-id-error").style.display = "block";
-        valid = false;
-    } else {
-        document.getElementById("user-id-error").style.display = "none";
-    }
-
-    if (!password) {
-        document.getElementById("password-error").innerText = "Please enter your password.";
-        document.getElementById("password-error").style.display = "block";
-        valid = false;
-    } else {
-        document.getElementById("password-error").style.display = "none";
-    }
-
-    if (!captchaInput) {
-        document.getElementById("captcha-error").innerText = "Please enter the captcha.";
-        document.getElementById("captcha-error").style.display = "block";
-        valid = false;
-    } else {
-        document.getElementById("captcha-error").style.display = "none";
-    }
-
-    if (valid) {
-        if (userId === USER_ID && password === PASSWORD && captchaInput === captcha) {
-            openEditor();
-        } else {
-            attempts++;
-            if (attempts >= MAX_ATTEMPTS) {
-                playVideo();
-            } else {
-                document.getElementById("captcha-error").innerText = "Invalid credentials or captcha.";
-                document.getElementById("captcha-error").style.display = "block";
-                generateCaptcha();
-            }
-        }
-    }
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
-function resetForm() {
-    document.getElementById("user-id").value = '';
-    document.getElementById("password").value = '';
-    document.getElementById("captcha-input").value = '';
+h1 {
+    text-align: center;
 }
 
-function playVideo() {
-    document.getElementById("login-form").classList.add("hidden");
-    document.getElementById("video-container").classList.remove("hidden");
-    document.getElementById("video").play();
+label {
+    display: block;
+    margin-top: 10px;
 }
 
-function openEditor() {
-    document.getElementById("login-form").classList.add("hidden");
-    document.getElementById("editor").classList.remove("hidden");
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-function showRegisterForm() {
-    document.getElementById("login-form").classList.add("hidden");
-    document.getElementById("register-form").classList.remove("hidden");
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
 }
 
-function hideRegisterForm() {
-    document.getElementById("register-form").classList.add("hidden");
-    document.getElementById("login-form").classList.remove("hidden");
+button:hover {
+    background-color: #0056b3;
 }
 
-function registerUser() {
-    const newUserId = document.getElementById("new-user-id").value;
-    const newPassword = document.getElementById("new-password").value;
-
-    let valid = true;
-
-    if (!newUserId) {
-        document.getElementById("new-user-id-error").innerText = "Please enter a User ID.";
-            document.getElementById("new-user-id-error").style.display = "block";
-        valid = false;
-    } else {
-        document.getElementById("new-user-id-error").style.display = "none";
-    }
-
-    if (!newPassword) {
-        document.getElementById("new-password-error").innerText = "Please enter a password.";
-        document.getElementById("new-password-error").style.display = "block";
-        valid = false;
-    } else {
-        document.getElementById("new-password-error").style.display = "none";
-    }
-
-    if (valid) {
-        if (!users[newUserId]) {
-            users[newUserId] = newPassword;
-            document.getElementById("register-form").classList.add("hidden");
-            document.getElementById("login-form").classList.remove("hidden");
-        } else {
-            alert("User ID already exists.");
-        }
-    }
+.hidden {
+    display: none;
 }
 
-function saveNote() {
-    const notespace = document.getElementById("note-space").value;
-    const noteContent = document.getElementById("note").value;
-
-    if (noteContent.trim() === '') {
-        alert("Note cannot be empty.");
-        return;
-    }
-
-    if (notespaces[notespaces]) {
-        notespaces[notespace] = notespaces[notespace] || [];
-        notespaces[notespace].push(noteContent);
-        loadNotespaces();
-        document.getElementById("note").value = '';
-        alert("Note saved successfully.");
-    } else {
-        alert("Please select or create a notespace first.");
-    }
+.logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 100px;
+    height: auto;
 }
 
-function loadNotespaces() {
-    const notespaceSelect = document.getElementById("note-space");
-    notespaceSelect.innerHTML = '<option value="" disabled selected>Select notespace</option>';
-
-    for (let name in notespaces) {
-        const option = document.createElement("option");
-        option.value = name;
-        option.textContent = name;
-        notespaceSelect.appendChild(option);
-    }
+#video {
+    width: 100%;
+    height: auto;
 }
 
-function createNotespace() {
-    const notespace = prompt("Enter name for new notespace:");
-    if (notespace && !notespaces[notespace]) {
-        notespaces[notespace] = [];
-        loadNotespaces();
-    } else if (notespaces[notespace]) {
-        alert("Notespace already exists.");
-    }
+textarea {
+    height: 200px;
 }
-
-function loadNotespace() {
-    const notespace = document.getElementById("note-space").value;
-    if (notespaces[notespace]) {
-        document.getElementById("note").value = notespaces[notespace].join('\n\n');
-    } else {
-        document.getElementById("note").value = '';
-    }
-}
-
-function animateLogo() {
-    const logo = document.getElementById("logo");
-    logo.classList.add("animated-logo");
-    setTimeout(() => {
-        logo.classList.remove("animated-logo");
-    }, 2000);
-}
-
