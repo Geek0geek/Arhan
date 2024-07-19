@@ -5,32 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARHAN Securo Serve Login</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <img src="logo.png" alt="Logo" class="logo" id="logo">
+        <img src="logo.png" alt="Logo" class="logo">
         <h1>ARHAN Securo Serve</h1>
         <div id="login-form">
             <label for="user-id">User ID:</label>
             <input type="text" id="user-id">
-            <small id="user-id-error" class="error-message"></small>
             <label for="password">Password:</label>
             <input type="password" id="password">
-            <small id="password-error" class="error-message"></small>
             <label for="captcha">Captcha: <span id="captcha"></span></label>
             <input type="text" id="captcha-input">
-            <small id="captcha-error" class="error-message"></small>
             <button onclick="validateLogin()">Login</button>
             <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
         </div>
         <div id="register-form" class="hidden">
             <label for="new-user-id">New User ID:</label>
             <input type="text" id="new-user-id">
-            <small id="new-user-id-error" class="error-message"></small>
             <label for="new-password">New Password:</label>
             <input type="password" id="new-password">
-            <small id="new-password-error" class="error-message"></small>
             <button onclick="registerUser()">Register</button>
             <button onclick="hideRegisterForm()">Cancel</button>
         </div>
@@ -41,11 +35,6 @@
             </video>
         </div>
         <div id="editor" class="hidden">
-            <label for="note-space">Select Notespace:</label>
-            <select id="note-space" onchange="loadNotespace()">
-                <option value="" disabled selected>Select notespace</option>
-            </select>
-            <button onclick="createNotespace()">Create Notespace</button>
             <textarea id="note" placeholder="Write your note here..."></textarea>
             <button onclick="saveNote()">Save Note</button>
         </div>
