@@ -3,6 +3,8 @@ const PASSWORD = "sierra_7";
 let attempts = 0;
 const MAX_ATTEMPTS = 3;
 
+let users = {};
+
 window.onload = function() {
     generateCaptcha();
 };
@@ -20,7 +22,6 @@ function validateLogin() {
 
     if (userId === USER_ID && password === PASSWORD && captchaInput === captcha) {
         alert("Login successful!");
-        
         openEditor();
     } else {
         attempts++;
@@ -28,9 +29,16 @@ function validateLogin() {
             playVideo();
         } else {
             alert(`Login failed! Attempts left: ${MAX_ATTEMPTS - attempts}`);
+            resetForm();
             generateCaptcha();
         }
     }
+}
+
+function resetForm() {
+    document.getElementById("user-id").value = '';
+    document.getElementById("password").value = '';
+    document.getElementById("captcha-input").value = '';
 }
 
 function playVideo() {
@@ -40,6 +48,35 @@ function playVideo() {
 }
 
 function openEditor() {
+    document.getElementById("login-form").classList.add("hidden");
+    document.getElementById("editor").classList.remove("hidden");
+}
 
-    alert("Editor opened!");
+function showRegisterForm() {
+    document.getElementById("login-form").classList.add("hidden");
+    document.getElementById("register-form").classList.remove("hidden");
+}
+
+function hideRegisterForm() {
+    document.getElementById("register-form").classList.add("hidden");
+    document.getElementById("login-form").classList.remove("hidden");
+}
+
+function registerUser() {
+    const newUserId = document.getElementById("new-user-id").value;
+    const newPassword = document.getElementById("new-password").value;
+
+    if (users[newUserId]) {
+        alert("User ID already exists. Please choose a different User ID.");
+    } else {
+        users[newUserId] = newPassword;
+        alert("Registration successful! You can now log in.");
+        hideRegisterForm();
+    }
+}
+
+function saveNote() {
+    const note = document.getElementById("note").value;
+    // Implement the code to save the note to your GitHub repo
+    alert("Note saved!");
 }
