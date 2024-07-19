@@ -136,7 +136,7 @@ function loadNotespaces() {
 }
 
 function createNotespace() {
-    const notespace = prompt("Enter notespace name:");
+    const notespace = prompt("Enter name for new notespace:");
     if (notespace && !notespaces[notespace]) {
         notespaces[notespace] = [];
         loadNotespaces();
