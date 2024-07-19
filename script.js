@@ -149,4 +149,6 @@ function loadNotespace() {
     if (notespaces[notespace]) {
         document.getElementById("note").value = notespaces[notespace].join('\n\n');
     } else {
-        document.getElementById("note").value
+        document.getElementById("note").value = '';
+    }
+}
