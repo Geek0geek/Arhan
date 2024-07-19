@@ -9,6 +9,7 @@ let notespaces = {};
 window.onload = function() {
     generateCaptcha();
     loadNotespaces();
+    animateLogo();
 };
 
 function generateCaptcha() {
@@ -151,4 +152,12 @@ function loadNotespace() {
     } else {
         document.getElementById("note").value = '';
     }
+}
+
+function animateLogo() {
+    const logo = document.getElementById("logo");
+    logo.classList.add("animated-logo");
+    setTimeout(() => {
+        logo.classList.remove("animated-logo");
+    }, 2000);
 }
