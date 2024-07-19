@@ -35,6 +35,11 @@
             </video>
         </div>
         <div id="editor" class="hidden">
+            <label for="note-space">Select Notespace:</label>
+            <select id="note-space" onchange="loadNotespace()">
+                <option value="" disabled selected>Select notespace</option>
+            </select>
+            <button onclick="createNotespace()">Create Notespace</button>
             <textarea id="note" placeholder="Write your note here..."></textarea>
             <button onclick="saveNote()">Save Note</button>
         </div>
