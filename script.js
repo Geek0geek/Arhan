@@ -104,4 +104,51 @@ function updateGitHub(notespace, notes) {
     fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
         method: 'PUT',
         headers: {
-            'Authorization': `token ${token
+            'Authorization': `token ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            message: `Update notes in ${notespace}`,
+            content: btoa(JSON.stringify(notes)),
+            sha: '', // Add logic to get the file SHA if updating an existing file
+        })
+    }).then(response => response.json())
+    .then(data => {
+        if (data.commit) {
+            alert("Note saved!");
+        } else {
+            alert("Failed to save note.");
+        }
+    });
+}
+
+function loadNotespaces() {
+    const notespaceSelect = document.getElementById("note-space");
+    notespaceSelect.innerHTML = '<option value="" disabled selected>Select notespace</option>';
+
+    Object.keys(notespaces).forEach(space => {
+        const option = document.createElement("option");
+        option.value = space;
+        option.text = space;
+        notespaceSelect.appendChild(option);
+    });
+}
+
+function createNotespace() {
+    const notespace = prompt("Enter notespace name:");
+    if (notespace && !notespaces[notespace]) {
+        notespaces[notespace] = [];
+        loadNotespaces();
+    } else if (notespace) {
+        alert("Notespace already exists.");
+    }
+}
+
+function loadNotespace() {
+    const notespace = document.getElementById("note-space").value;
+    if (notespaces[notespace]) {
+        document.getElementById("note").value = notespaces[notespace].join('\n\n');
+    } else {
+        document.getElementById("note").value = '';
+    }
+}
