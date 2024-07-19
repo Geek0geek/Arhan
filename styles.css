@@ -5,16 +5,16 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #121212;
-    color: #00ff99;
+    background-color: #000;
+    color: #00f;
     overflow: hidden;
 }
 
 .container {
-    background-color: #1e1e1e;
+    background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.5);
     text-align: center;
     animation: fadeIn 2s ease-in-out;
 }
@@ -22,13 +22,14 @@ body {
 h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
-    animation: glow 1.5s infinite alternate;
+    color: #00f;
 }
 
 label {
     display: block;
     margin-top: 10px;
     font-size: 1.2em;
+    color: #000;
 }
 
 input, textarea {
@@ -36,18 +37,18 @@ input, textarea {
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
-    border: 1px solid #00ff99;
+    border: 1px solid #00f;
     border-radius: 5px;
-    background-color: #333;
-    color: #00ff99;
+    background-color: #fff;
+    color: #000;
     font-size: 1.2em;
 }
 
 button {
     width: 100%;
     padding: 15px;
-    background-color: #00ff99;
-    color: #1e1e1e;
+    background-color: #00f;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -56,7 +57,7 @@ button {
 }
 
 button:hover {
-    background-color: #00cc7a;
+    background-color: #0000cc;
 }
 
 .hidden {
@@ -66,9 +67,9 @@ button:hover {
 .logo {
     display: block;
     margin: 0 auto 20px auto;
-    width: 150px;
+    width: 200px;
     height: auto;
-    animation: spin 4s infinite linear;
+    animation: scaleUp 2s ease-in-out;
 }
 
 #video {
@@ -85,12 +86,7 @@ textarea {
     to { opacity: 1; }
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 30px #00ff99, 0 0 40px #00ff99, 0 0 50px #00ff99, 0 0 60px #00ff99, 0 0 70px #00ff99; }
-    to { text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99, 0 0 40px #00ff99, 0 0 50px #00ff99, 0 0 60px #00ff99, 0 0 70px #00ff99, 0 0 80px #00ff99; }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+@keyframes scaleUp {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
 }
