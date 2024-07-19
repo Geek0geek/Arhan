@@ -100,4 +100,87 @@ function registerUser() {
 
     if (!newUserId) {
         document.getElementById("new-user-id-error").innerText = "Please enter a User ID.";
-        document.get
+            document.getElementById("new-user-id-error").style.display = "block";
+        valid = false;
+    } else {
+        document.getElementById("new-user-id-error").style.display = "none";
+    }
+
+    if (!newPassword) {
+        document.getElementById("new-password-error").innerText = "Please enter a password.";
+        document.getElementById("new-password-error").style.display = "block";
+        valid = false;
+    } else {
+        document.getElementById("new-password-error").style.display = "none";
+    }
+
+    if (valid) {
+        if (!users[newUserId]) {
+            users[newUserId] = newPassword;
+            document.getElementById("register-form").classList.add("hidden");
+            document.getElementById("login-form").classList.remove("hidden");
+        } else {
+            alert("User ID already exists.");
+        }
+    }
+}
+
+function saveNote() {
+    const notespace = document.getElementById("note-space").value;
+    const noteContent = document.getElementById("note").value;
+
+    if (noteContent.trim() === '') {
+        alert("Note cannot be empty.");
+        return;
+    }
+
+    if (notespaces[notespaces]) {
+        notespaces[notespace] = notespaces[notespace] || [];
+        notespaces[notespace].push(noteContent);
+        loadNotespaces();
+        document.getElementById("note").value = '';
+        alert("Note saved successfully.");
+    } else {
+        alert("Please select or create a notespace first.");
+    }
+}
+
+function loadNotespaces() {
+    const notespaceSelect = document.getElementById("note-space");
+    notespaceSelect.innerHTML = '<option value="" disabled selected>Select notespace</option>';
+
+    for (let name in notespaces) {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        notespaceSelect.appendChild(option);
+    }
+}
+
+function createNotespace() {
+    const notespace = prompt("Enter name for new notespace:");
+    if (notespace && !notespaces[notespace]) {
+        notespaces[notespace] = [];
+        loadNotespaces();
+    } else if (notespaces[notespace]) {
+        alert("Notespace already exists.");
+    }
+}
+
+function loadNotespace() {
+    const notespace = document.getElementById("note-space").value;
+    if (notespaces[notespace]) {
+        document.getElementById("note").value = notespaces[notespace].join('\n\n');
+    } else {
+        document.getElementById("note").value = '';
+    }
+}
+
+function animateLogo() {
+    const logo = document.getElementById("logo");
+    logo.classList.add("animated-logo");
+    setTimeout(() => {
+        logo.classList.remove("animated-logo");
+    }, 2000);
+}
+
