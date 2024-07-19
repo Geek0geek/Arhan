@@ -4,12 +4,9 @@ let attempts = 0;
 const MAX_ATTEMPTS = 3;
 
 let users = {};
-let notespaces = {};
 
 window.onload = function() {
     generateCaptcha();
-    loadNotespaces();
-    animateLogo();
 };
 
 function generateCaptcha() {
@@ -80,84 +77,6 @@ function registerUser() {
 
 function saveNote() {
     const note = document.getElementById("note").value;
-    const notespace = document.getElementById("note-space").value;
-
-    if (!notespace) {
-        alert("Please select or create a notespace.");
-        return;
-    }
-
-    if (!notespaces[notespace]) {
-        notespaces[notespace] = [];
-    }
-
-    notespaces[notespace].push(note);
-    updateGitHub(notespace, notespaces[notespace]);
-}
-
-function updateGitHub(notespace, notes) {
-    // Replace with your actual GitHub repo information and access token
-    const repo = 'your-repo';
-    const owner = 'your-username';
-    const path = `${notespace}.json`;
-    const token = 'your-github-token';
-
-    fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
-        method: 'PUT',
-        headers: {
-            'Authorization': `token ${token}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            message: `Update notes in ${notespace}`,
-            content: btoa(JSON.stringify(notes)),
-            sha: '', // Add logic to get the file SHA if updating an existing file
-        })
-    }).then(response => response.json())
-    .then(data => {
-        if (data.commit) {
-            alert("Note saved!");
-        } else {
-            alert("Failed to save note.");
-        }
-    });
-}
-
-function loadNotespaces() {
-    const notespaceSelect = document.getElementById("note-space");
-    notespaceSelect.innerHTML = '<option value="" disabled selected>Select notespace</option>';
-
-    Object.keys(notespaces).forEach(space => {
-        const option = document.createElement("option");
-        option.value = space;
-        option.text = space;
-        notespaceSelect.appendChild(option);
-    });
-}
-
-function createNotespace() {
-    const notespace = prompt("Enter name for new notespace:");
-    if (notespace && !notespaces[notespace]) {
-        notespaces[notespace] = [];
-        loadNotespaces();
-    } else if (notespace) {
-        alert("Notespace already exists.");
-    }
-}
-
-function loadNotespace() {
-    const notespace = document.getElementById("note-space").value;
-    if (notespaces[notespace]) {
-        document.getElementById("note").value = notespaces[notespace].join('\n\n');
-    } else {
-        document.getElementById("note").value = '';
-    }
-}
-
-function animateLogo() {
-    const logo = document.getElementById("logo");
-    logo.classList.add("animated-logo");
-    setTimeout(() => {
-        logo.classList.remove("animated-logo");
-    }, 2000);
+    // Implement the code to save the note to your GitHub repo
+    alert("Note saved!");
 }
