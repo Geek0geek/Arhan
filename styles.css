@@ -5,13 +5,12 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #000;
+    background-color: #f0f0f0;
     color: #00f;
-    overflow: hidden;
 }
 
 .container {
-    background-color: #fff;
+    background-color: #000;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 255, 0.5);
@@ -29,7 +28,7 @@ label {
     display: block;
     margin-top: 10px;
     font-size: 1.2em;
-    color: #000;
+    color: #00f;
 }
 
 input, textarea {
@@ -67,7 +66,7 @@ button:hover {
 .logo {
     display: block;
     margin: 0 auto 20px auto;
-    width: 200px;
+    width: 300px;
     height: auto;
     animation: scaleUp 2s ease-in-out;
 }
