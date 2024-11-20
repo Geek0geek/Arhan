@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARHAN Securo Serve Login</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <img src="logo.png" alt="Logo" class="logo">
-        <h1>ARHAN Securo Serve</h1>
-        <div id="login-form">
-            <label for="user-id">User ID:</label>
-            <input type="text" id="user-id">
-            <label for="password">Password:</label>
-            <input type="password" id="password">
-            <label for="captcha">Captcha: <span id="captcha"></span></label>
-            <input type="text" id="captcha-input">
-            <button onclick="validateLogin()">Login</button>
-            <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>battleship</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div class="board">
+        <div class="displays">
+          <div class="top">
+            <ul class="grid"></ul>
+          </div>
+          <div class="bottom">
+            <ul class="grid"></ul>
+          </div>
         </div>
-        <div id="register-form" class="hidden">
-            <label for="new-user-id">New User ID:</label>
-            <input type="text" id="new-user-id">
-            <label for="new-password">New Password:</label>
-            <input type="password" id="new-password">
-            <button onclick="registerUser()">Register</button>
-            <button onclick="hideRegisterForm()">Cancel</button>
+      </div>
+      <div class="panel">
+        <div class="topPanel">
+          <div class="layout">
+            <div class="buttons one">One-Player</div>
+            <div class="buttons multi">Two-Player</div>
+            <div class="buttons options">Options</div>
+          </div>
         </div>
-        <div id="video-container" class="hidden">
-            <video id="video" controls>
-                <source src="video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="console">
+          <span class="text"></span>
         </div>
-        <div id="editor" class="hidden">
-            <textarea id="note" placeholder="Write your note here..."></textarea>
-            <button onclick="saveNote()">Save Note</button>
-        </div>
+      </div>
     </div>
-    <script src="script.js"></script>
-</body>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="./script.js"></script>
 </html>
